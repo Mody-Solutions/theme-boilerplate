@@ -4,6 +4,7 @@ cache
 upgrade
 uploads
 node_modules
+auth.json
 
 .DS_Store
 
