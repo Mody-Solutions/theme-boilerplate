@@ -5,7 +5,7 @@ const ColorPicker = {
     action: () => {
         acf.addFilter('color_picker_args', (args, field) => {
             console.log(args)
-            args.palettes = ['#134740', '#BAD46E', '#EC6B48', '#000000', '#FFFFFF'];
+            args.palettes = ['#532B72', '#83A136', '#AA9439', '#000000', '#FFFFFF'];
             return args;
         });
     }

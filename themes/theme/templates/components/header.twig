@@ -18,7 +18,7 @@
 				</svg>
 				<div class="menu-container">
 					{% include 'templates/partials/menu.twig' with { 'menu': header_menu, 'class': 'header-menu' } %}
-					{% include 'templates/partials/header-call-to-action.twig' %}
+					{% include 'templates/partials/header-call-to-action.twig' with { 'call_to_action': options.call_to_action, 'call_to_action_two': options.call_to_action_two } %}
 				</div>
 			</nav>
 		</div>
