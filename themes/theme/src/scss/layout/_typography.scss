@@ -1,0 +1,163 @@
+//==================================================================
+// TYPOGRAPHY
+//==================================================================
+html {
+    font-size: $base-font-size;
+    font-family: $body-font;
+    color: $body-font-color;
+    @include for-laptop-up {
+        overflow-x: hidden;
+    }
+}
+
+body,
+::before,
+::after {
+    -webkit-font-smoothing: antialiased;
+}
+
+@each $heading-type, $breakpoint in $heading-config {
+    #{$heading-type},
+    .#{$heading-type} {
+        margin: 0;
+        font-family: $heading-font;
+        @each $property in map-get-values($heading-config, '#{$heading-type}', 'mobile') {
+            $key: nth($property, 1);
+            $value: nth($property, 2);
+            #{$key}: #{$value};
+        }
+        @include for-laptop-up {
+            @each $property in map-get-values($heading-config, '#{$heading-type}', 'desktop') {
+                $key: nth($property, 1);
+                $value: nth($property, 2);
+                #{$key}: #{$value};
+            }
+        }
+    }
+}
+
+a {
+    text-decoration: none;
+    color: $tertiary-color;
+}
+
+p,
+li {
+    font-size: 0.875rem;
+    line-height: 1.75;
+    font-weight: 400;
+    @include for-laptop-up {
+        font-size: 1rem;
+        line-height: 1.68;
+    }
+    a:not(.btn) {
+        font-weight: 500;
+        border-bottom: 2px solid $white;
+        transition: border-color 0.3s ease;
+        &:hover,
+        &:focus {
+            border-color: $primary-color;
+        }
+    }
+}
+ol {
+    margin-left: 1rem;
+    li {
+        padding-left: 0.5rem;
+        padding-bottom: 0.25rem;
+    }
+}
+ul {
+    list-style: none;
+    margin-left: 0;
+    li {
+        position: relative;
+        padding-left: 1rem;
+        padding-bottom: 0.25rem;
+        &::before {
+            content: '\2022';
+            color: inherit;
+            font-weight: bold;
+            font-family: sans-serif;
+            font-size: 1.25rem;
+            line-height: 1.625rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+}
+
+// WYSIWYG styles
+.content-inner,
+.content-styles {
+    p,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-bottom: 1rem;
+    }
+    h4,
+    h5,
+    h6 {
+        font-weight: 600;
+    }
+    ul,
+    ol {
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+    }
+    img {
+        margin-bottom: 1rem;
+        &.alignleft {
+            @include for-phone-up {
+                float: left;
+                margin: 0 2rem 0.5rem 0;
+            }
+        }
+        &.alignright {
+            @include for-phone-up {
+                float: right;
+                margin: 0 0 0.5rem 2rem;
+            }
+        }
+        &.alignnone {
+            @include for-phone-up {
+                display: block;
+                margin: 4rem auto 4rem 0;
+            }
+        }
+    }
+    .btn {
+        margin-bottom: 1rem;
+        + .btn {
+            margin-left: 1rem;
+        }
+    }
+    blockquote {
+        margin: 2.5rem 2rem;
+        padding-left: 2rem;
+        border-left: 3px solid $primary-color;
+    }
+
+    hr {
+        border-top: 1px solid $grey-30;
+        margin: 3rem 0 3.5rem;
+    }
+
+    .wp-caption-text {
+        font-size: 0.875rem;
+    }
+}
+
+//==================================================================
+// TYPOGRAPHY CLASSES
+//==================================================================
+@each $colorKey, $color in $colorList {
+    // To use: apply class (ex) '.text-brand-blue' to apply that color.
+    .text-#{'' + $colorKey} {
+        color: $color;
+    }
+}

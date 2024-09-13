@@ -1,0 +1,129 @@
+//==================================================================
+// COLOR VARIABLES
+//=================================================================
+
+$primary-color: #532B72;
+$secondary-color: #83A136;
+$tertiary-color: #AA9439;
+
+$white: #FFFFFF;
+$black: #000000;
+$grey-10: #e6e6e6;
+$grey-20: #cccccc;
+$grey-30: #b3b3b3;
+$grey-40: #999999;
+$grey-50: #808080;
+$grey-60: #666666;
+$grey-70: #4d4d4d;
+$grey-80: #333333;
+$grey-90: #1a1a1a;
+
+$error-color: #AA9439;
+
+$body-font-color: $black;
+
+$colorList: (
+        primary: $primary-color,
+        secondary: $secondary-color,
+        tertiary: $tertiary-color,
+        grey-light: $grey-30,
+        grey-medium: $grey-60,
+        grey-dark: $grey-90,
+        white: $white,
+        black: $black
+);
+
+//==================================================================
+// TYPOGRAPHY VARIABLES
+//==================================================================
+$body-font: Outfit, sans-serif;
+$heading-font: "Roboto Serif", sans-serif;
+$base-font-size: 16px;
+$heading-config: (
+        h1: (
+                mobile: (
+                        font-size: 2.5rem,
+                        font-weight: 600,
+                        color: $primary-color,
+                        line-height: 3rem,
+                ),
+                desktop: (
+                        font-size: 3.125rem,
+                        line-height: 3.75rem,
+                        color: $primary-color,
+                )
+        ),
+        h2: (
+                mobile: (
+                        font-size: 2.125rem,
+                        font-weight: 600,
+                        line-height: 2.55rem,
+                        color: $primary-color,
+                ),
+                desktop: (
+                        font-size: 2.5rem,
+                        color: $primary-color,
+                )
+        ),
+        h3: (
+                mobile: (
+                        font-size: 1.45rem,
+                        line-height: 1.8rem,
+                        font-weight: 500,
+                        color: $primary-color,
+                ),
+                desktop: (
+                        font-size: 1.45rem,
+                        color: $primary-color,
+                )
+        ),
+        h4: (
+                mobile: (
+                        font-size: 1.375rem,
+                        line-height: 1.65rem,
+                        font-weight: 600,
+                        color: $tertiary-color,
+                        font-family: $body-font
+                ),
+                desktop: (
+                        font-size: 1.375rem,
+                )
+        )
+);
+
+//==================================================================
+// BREAKPOINT VARIABLES
+//==================================================================
+$phone-breakpoint: 30rem;
+$tablet-breakpoint: 48rem;
+$laptop-breakpoint: 60rem;
+$desktop-breakpoint: 68.5625rem;
+
+//==================================================================
+// TRANSITION VARIABLES
+//==================================================================
+$transition: 0.3s ease-in-out;
+
+//==================================================================
+// BORDER
+//==================================================================
+$border-radius: 0.3125rem;
+
+:root {
+  --color-primary: #532B72;
+  --color-secondary: #83A136;
+  --color-terciary: #AA9439;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-grey-10: #E6E6E6;
+  --color-grey-20: #CCCCCC;
+  --color-grey-30: #B3B3B3;
+  --color-grey-40: #999999;
+  --color-grey-50: #808080;
+  --color-grey-60: #666666;
+  --color-grey-70: #4D4D4D;
+  --color-grey-80: #333333;
+  --color-grey-90: #1A1A1A;
+  --color-error: #AA9439;
+  --body-font-color: var(--color-black, #000000);
+}

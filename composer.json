@@ -1,0 +1,58 @@
+{
+    "name": "mody/theme",
+    "type": "wordpress-theme",
+    "license": "MIT",
+    "description": "WordPress starter theme with a modern development workflow",
+    "homepage": "https://modysolutions.com",
+    "authors": [
+        {
+            "name": "Mody Solutions",
+            "email": "devs@modysolutions.com",
+            "homepage": "https://modysolutions.com"
+        }
+    ],
+    "keywords": [
+        "wordpress"
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        },
+        {
+            "type":"composer",
+            "url":"https://connect.advancedcustomfields.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "themes/theme/src/"
+        }
+    },
+    "require": {
+        "php": ">=8.1",
+        "twig/twig": "^3.0",
+        "timber/timber": "^v2.2",
+        "wpackagist-plugin/sa11y": "^1.1.6",
+        "wpackagist-plugin/permalink-manager": "^2.4.3.4",
+        "wpackagist-plugin/marker-io": "^1.1.9",
+        "wpengine/advanced-custom-fields-pro": "^6.0"
+    },
+    "config": {
+        "preferred-install": "dist",
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "installer-paths": {
+            "./mu-plugins/{$name}/": [],
+            "./plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ]
+        }
+    }
+}

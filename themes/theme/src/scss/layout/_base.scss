@@ -1,0 +1,73 @@
+//==================================================================
+// BASE PAGE LAYOUT / GENERIC STYLES
+//==================================================================
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #fff;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.skip-link {
+    position: absolute;
+    top: 2.5rem;
+    left: 1rem;
+    transform: translateX(-100vw);
+    transition: transform 0.3s ease;
+    z-index: 4;
+    @include for-laptop-up {
+        top: 1rem;
+    }
+    &:focus {
+        transform: translateX(0);
+    }
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+nav ul {
+    @include list-reset;
+}
+
+html.noscroll {
+    overflow: hidden;
+    &.overlay {
+        position: relative;
+    }
+}
+
+@each $colorKey, $color in $colorList {
+    .bg-#{'' + $colorKey} {
+        background-color: $color;
+    }
+}
+
+//==================================================================
+// LAYOUT UTILITY
+//==================================================================
+.invisible {
+    @include invisible;
+}
+
+.bg-image {
+    @include bg-image;
+}
+
+.sr-only {
+    @include for-tablet-up {
+        display: none;
+    }
+}

@@ -1,0 +1,38 @@
+.hero {
+  min-height: 21.5rem;
+  padding: 21.5rem 0 3rem;
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: 48rem;
+  background-color: $primary-color;
+  color: $white;
+
+  @include for-tablet-up {
+    min-height: 18.75rem;
+    padding-top: 3rem;
+    background-size: cover;
+  }
+
+  &__content {
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+
+    @include for-tablet-up {
+      width: 50%;
+    }
+  }
+
+  &__heading {
+    font-family: $heading-font;
+    color: $white;
+  }
+
+  &__description {
+    flex-wrap: pretty;
+  }
+
+  &__calls_to_action {
+    display: flex;
+  }
+}
