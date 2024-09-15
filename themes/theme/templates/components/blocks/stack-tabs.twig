@@ -1,0 +1,71 @@
+{% if is_preview %}
+    <img src="{{ theme.link }}/assets/images/preview/stack-slider.png" width="100%" alt="Hero preview"/>
+{% else %}
+    <style>
+        .stack_tabs__{{ block.id }} {
+        {% if fields.background_image %}
+            --stack-tabs-background-image: url({{ fields.background_image.sizes.large }});
+        {% endif %}
+            --stack-tabs-background-color: {{ fields.background_color }};
+            --stack-tabs-super-title-color: {{ fields.super_title_color }};
+            --stack-tabs-title-color: {{ fields.title_color }};
+            --stack-tabs-sub-title-color: {{ fields.subtitle_color }};
+            --stack-tabs-accent-color: {{ fields.accent_color }};
+            --stack-tabs-active-color: {{ fields.active_color }};
+        }
+    </style>
+    <section class="stack_tabs stack_tabs__{{ block.id }}">
+        <div class="container">
+            <div class="stack_tabs__content content-inner tabs">
+                {% if fields.super_title %}
+                    <h4 class="stack_tabs__super_title">{{ fields.super_title }}</h4>
+                {% endif %}
+                {% if fields.title %}
+                    <h2 class="stack_tabs__title">{{ fields.title }}</h2>
+                {% endif %}
+                {% if fields.subtitle %}
+                    <p class="stack_tabs__subtitle">{{ fields.subtitle }}</p>
+                {% endif %}
+                <div class="stack_tabs__container">
+                    <div class="stack_tabs__images tabs__content">
+                        {% if fields.grid_items %}
+                            {% for item in fields.grid_items %}
+                                <div class="stack_tabs__image tabs__item_content"
+                                     id="{{ function('_wp_to_kebab_case', item.title) }}">
+                                    {% if item.picture %}
+                                        <img src="{{ item.picture.sizes.large }}" alt="{{ item.title }}"
+                                             class="stack_tabs__item_picture">
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="stack_tabs__tabs tabs__tabs">
+                        {% if fields.grid_items %}
+                            {% for item in fields.grid_items %}
+                                <div class="stack_tabs__tab tabs__tab"
+                                     data-target="{{ function('_wp_to_kebab_case', item.title) }}">
+                                    {% if item.title %}
+                                        <h3 class="stack_tabs__item_title">{{ item.title }}</h3>
+                                    {% endif %}
+
+                                    {% if item.content %}
+                                        <div class="stack_tabs__item_content">{{ item.content }}</div>
+                                    {% endif %}
+
+                                    {% if item.call_to_action %}
+                                        <a class="stack_tabs__item_call_to_action"
+                                           href="{{ item.call_to_action.url }}"
+                                           target="{{ item.call_to_action.tarket }}">
+                                            {{ item.call_to_action.title }}
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}

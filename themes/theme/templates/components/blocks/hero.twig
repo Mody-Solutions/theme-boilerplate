@@ -1,34 +1,38 @@
-{% if is_preview %}
-    <img src="{{ theme.link }}/assets/images/preview/hero.png" width="100%" alt="Hero preview" />
-{% else %}
-    <style>
-        .hero--{{ block.id }} {
-            background-image: url({{ fields.background_image.sizes.large }});
-        }}
-    </style>
-    <section class="hero hero--{{ fields.theme }} hero--{{ block.id }}" {{ fields.section_id | print_id }}>
-        <div class="container">
-            <div class="hero__content content-inner">
-                {% if fields.heading %}
-                    <h1 class="hero__heading">{{ fields.heading }}</h1>
-                {% endif %}
-                {% if fields.description %}
-                    <div class="hero__description">{{ fields.description }}</div>
-                {% endif %}
-                <div class="hero__calls_to_action">
-                    {% if fields.calls_to_action %}
-                        {% for item in fields.calls_to_action %}
-                            <a href="{{ item.link.url }}"
-                               style="border-color:{{ item.border_color }};"
-                               class="btn hero__link"
-                               title="{{ item.link.title }}"
-                               target="{{ item.link.target }}">
-                                {{ item.link.title }}
-                            </a>
-                        {% endfor %}
-                    {% endif %}
+<style>
+    .hero__{{ block.id }} {
+        --hero-background-image: url({{ fields.background_image.sizes.large }});
+    }
+</style>
+<section class="hero hero__{{ fields.theme }} hero__{{ block.id }}">
+    <div class="container">
+        <div class="hero__content content-inner">
+            {% if fields.title %}
+                <h1 class="hero__heading"
+                    data-aos="{{ fields.title_animation }}">
+                    {{ fields.title }}
+                </h1>
+            {% endif %}
+            {% if fields.subtitle %}
+                <div class="hero_description"
+                     data-aos="{{ fields.subtitle_animation }}">
+                    {{ fields.subtitle }}
                 </div>
+            {% endif %}
+            <div class="_calls_to_action">
+                {% if fields.calls_to_action %}
+                    {% for item in fields.calls_to_action %}
+                        <a href="{{ item.link.url }}"
+                           data-aos="{{ item.entrance_animation }}"
+                           style="--button-border-color:{{ item.border_color }};
+                                   --button-text-color: {{ item.border_color }};"
+                           class="{{ item.type }} hero__link"
+                           title="{{ item.link.title }}"
+                           target="{{ item.link.target }}">
+                            {{ item.link.title }}
+                        </a>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
-    </section>
-{% endif %}
+    </div>
+</section>

@@ -1,56 +1,63 @@
-{% if is_preview %}
-    <img src="{{ theme.link }}/assets/images/preview/icon-grid.png" width="100%" alt="Hero preview"/>
-{% else %}
-    <style>
-        .icon_grid__{{ block.id }} {
-            --icon-grid-background-color: {{ fields.background_color }};
-            --icon-grid-super-title-color: {{ fields.super_title_color }};
-            --icon-grid-title-color: {{ fields.title_color }};
-            --icon-grid-sub-title-color: {{ fields.subtitle_color }};
-            --icon-grid-accent-color: {{ fields.accent_color }};
-        }
-    </style>
-    <section class="icon_grid icon_grid__{{ block.id }}">
-        <div class="container">
-            <div class="icon_grid__content content-inner">
-                {% if fields.super_title %}
-                    <h4 class="icon_grid__super_title">{{ fields.super_title }}</h4>
-                {% endif %}
-                {% if fields.title %}
-                    <h2 class="icon_grid__title">{{ fields.title }}</h2>
-                {% endif %}
-                {% if fields.subtitle %}
-                    <p class="icon_grid__subtitle">{{ fields.subtitle }}</p>
-                {% endif %}
-                <div class="icon_grid__items">
-                    {% if fields.grid_items %}
-                        {% for item in fields.grid_items %}
-                            <div class="icon_grid__item">
-                                {% if item.picture %}
-                                    <img src="{{ item.picture.sizes.large }}" alt="{{ item.title }}"
-                                         class="icon_grid__item_picture">
-                                {% endif %}
+<style>
+    .icon_grid__{{ block.id }} {
+        --icon-grid-background-color: {{ fields.background_color }};
+        --icon-grid-super-title-color: {{ fields.super_title_color }};
+        --icon-grid-title-color: {{ fields.title_color }};
+        --icon-grid-sub-title-color: {{ fields.subtitle_color }};
+        --icon-grid-accent-color: {{ fields.accent_color }};
+    }
+</style>
+<section class="icon_grid icon_grid__{{ block.id }}">
+    <div class="container">
+        <div class="icon_grid__content content-inner">
+            {% if fields.super_title %}
+                <h4 class="icon_grid__super_title"
+                    data-aos="{{ fields.super_title_animation }}">
+                    {{ fields.super_title }}
+                </h4>
+            {% endif %}
+            {% if fields.title %}
+                <h2 class="icon_grid__title"
+                    data-aos="{{ fields.title_animation }}">
+                    {{ fields.title }}
+                </h2>
+            {% endif %}
+            {% if fields.subtitle %}
+                <p class="icon_grid__subtitle"
+                   data-aos="{{ fields.subtitle_animation }}">
+                    {{ fields.subtitle }}
+                </p>
+            {% endif %}
+            <div class="icon_grid__items">
+                {% if fields.grid_items %}
+                    {% for item in fields.grid_items %}
+                        <div class="icon_grid__item">
+                            {% if item.picture %}
+                                <img src="{{ item.picture.sizes.large }}" alt="{{ item.title }}"
+                                     class="icon_grid__item_picture">
+                            {% endif %}
 
-                                {% if item.title %}
-                                    <h3 class="icon_grid__item_title">{{ item.title }}</h3>
-                                {% endif %}
+                            {% if item.title %}
+                                <h3 class="icon_grid__item_title">
+                                    {{ item.title }}
+                                </h3>
+                            {% endif %}
 
-                                {% if item.content %}
-                                    <div class="icon_grid__item_content">{{ item.content }}</div>
-                                {% endif %}
+                            {% if item.content %}
+                                <div class="icon_grid__item_content">{{ item.content }}</div>
+                            {% endif %}
 
-                                {% if item.call_to_action %}
-                                    <a class="icon_grid__item_call_to_action"
-                                       href="{{ item.call_to_action.url }}"
-                                       target="{{ item.call_to_action.tarket }}">
-                                        {{ item.call_to_action.title }}
-                                    </a>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
+                            {% if item.call_to_action %}
+                                <a class="icon_grid__item_call_to_action"
+                                   href="{{ item.call_to_action.url }}"
+                                   target="{{ item.call_to_action.tarket }}">
+                                    {{ item.call_to_action.title }}
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
-    </section>
-{% endif %}
+    </div>
+</section>

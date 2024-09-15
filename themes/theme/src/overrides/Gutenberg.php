@@ -30,13 +30,16 @@ class Gutenberg {
 		$script = "window.onload = function() { const isFullscreenMode = wp.data.select( 'core/edit-post' ).isFeatureActive( 'fullscreenMode' ); if ( isFullscreenMode ) { wp.data.dispatch( 'core/edit-post' ).toggleFeature( 'fullscreenMode' ); } }";
 		wp_add_inline_script( 'wp-blocks', $script );
 
-		$editor = require_once APP_THEME_DIR . '/assets/dist/editor.asset.php';
-		wp_enqueue_script(
-			'app-editor',
-			APP_THEME_URL . '/assets/dist/editor.js',
-			$editor['dependencies'],
-			$editor['version']
-		);
+        $editor_file = APP_THEME_DIR . '/assets/dist/editor.asset.php';
+        if(is_file($editor_file)) {
+            $editor = require_once $editor_file;
+            wp_enqueue_script(
+                'app-editor',
+                APP_THEME_URL . '/assets/dist/editor.js',
+                $editor['dependencies'],
+                $editor['version']
+            );
+        }
 	}
 
 	public static function allowed_block_types_all($allowed_blocks) : array {

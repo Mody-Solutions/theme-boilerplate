@@ -7,6 +7,7 @@ class Theme_Setup {
 		add_action( 'init', self::wp_init( ... ), 100 );
         add_action( 'wp_enqueue_scripts', self::wp_enqueue_scripts( ... ), 100 );
         add_action('login_enqueue_scripts', self::wp_enqueue_scripts(...), 100);
+        add_action('enqueue_block_assets', self::enqueue_block_assets(...), 9999999);
     }
 
 	public static function wp_init() : void {
@@ -26,7 +27,8 @@ class Theme_Setup {
 				$script['ver'],
 				$script['args']
 			);
-			wp_enqueue_script( $script['handle'] );
+            if($script['handle'] !== 'editor')
+                wp_enqueue_script( $script['handle'] );
 		}
 
 		foreach ( self::styles() as $style ) {
@@ -37,33 +39,60 @@ class Theme_Setup {
 				$style['ver'],
 				$style['media']
 			);
-			wp_enqueue_style($style['handle']);
+            if($style['handle'] !== 'editor')
+			    wp_enqueue_style($style['handle']);
 		}
 	}
 
+    public static function enqueue_block_assets() : void {
+        wp_enqueue_script('editor');
+        wp_enqueue_style('editor');
+    }
+
 	private static function scripts(): array {
-		$app = include( APP_THEME_DIR . '/assets/dist/app.asset.php' );
-		return [
-			[
-				'handle' => 'app',
-				'url'    => APP_THEME_URL . '/assets/dist/app.js',
-				'ver'    => $app['version'],
-				'deps'   => $app['dependencies'],
-				'args'  => [ 'in_footer' => true, 'defer' => true ]
-			]
-		];
+        $app_file = APP_THEME_DIR . '/assets/dist/app.asset.php';
+        if(is_file($app_file)) {
+            $app = require $app_file;
+            return [
+                [
+                    'handle' => 'app',
+                    'url'    => APP_THEME_URL . '/assets/dist/app.js',
+                    'ver'    => $app['version'],
+                    'deps'   => $app['dependencies'],
+                    'args'  => [ 'in_footer' => true, 'defer' => true ]
+                ],
+                [
+                    'handle' => 'editor',
+                    'url'    => APP_THEME_URL . '/assets/dist/editor.js',
+                    'ver'    => $app['version'],
+                    'deps'   => $app['dependencies'],
+                    'args'  => [ 'in_footer' => true, 'defer' => true ]
+                ],
+            ];
+        }
+        return [];
 	}
 
 	private static function styles(): array {
-		$app = include( APP_THEME_DIR . '/assets/dist/app.asset.php' );
-		return [
-			[
-				'handle' => 'app',
-				'url'    => APP_THEME_URL . '/assets/dist/app.css',
-				'ver'    => $app['version'],
-				'deps'   => null,
-				'media'  => 'all'
-			]
-		];
+        $app_file = APP_THEME_DIR . '/assets/dist/app.asset.php';
+        if(is_file($app_file)) {
+            $app = require APP_THEME_DIR . '/assets/dist/app.asset.php';
+            return [
+                [
+                    'handle' => 'app',
+                    'url'    => APP_THEME_URL . '/assets/dist/app.css',
+                    'ver'    => $app['version'],
+                    'deps'   => null,
+                    'media'  => 'all'
+                ],
+                [
+                    'handle' => 'editor',
+                    'url'    => APP_THEME_URL . '/assets/dist/editor.css',
+                    'ver'    => $app['version'],
+                    'deps'   => null,
+                    'media'  => 'all'
+                ],
+            ];
+        }
 	}
 }

@@ -1,14 +1,13 @@
 <?php
 namespace App;
 use App\additions\Login;
-use App\blocks\Hero;
-use App\blocks\Icon_Grid;
 use App\config\Theme_Options;
 use App\config\Theme_Setup;
 use App\config\Timber_Setup;
 use App\lib\Blocks;
 use App\overrides\Security;
 use App\overrides\Gutenberg;
+use App\lib\ACF;
 
 require_once WP_CONTENT_DIR . "/vendor/autoload.php";
 
@@ -23,6 +22,7 @@ Gutenberg::init();
 Security::init();
 Blocks::init();
 Login::init();
+ACF::init();
 
 $helpers = glob(APP_THEME_DIR . '/src/helpers/*.php');
 if($helpers) {

@@ -1,11 +1,16 @@
 .hero {
+  --hero-background-image: none;
+  --hero-background-color: var(--color-primary);
+  --hero-text-color: var(--color-white);
+
+  background-image: var(--hero-background-image, none);
   min-height: 21.5rem;
   padding: 21.5rem 0 3rem;
   background-position: top right;
   background-repeat: no-repeat;
   background-size: 48rem;
-  background-color: $primary-color;
-  color: $white;
+  background-color: var(--hero-background-color);
+  color: var(--hero-text-color);
 
   @include for-tablet-up {
     min-height: 18.75rem;
@@ -25,7 +30,7 @@
 
   &__heading {
     font-family: $heading-font;
-    color: $white;
+    color: var(--hero-text-color);
   }
 
   &__description {

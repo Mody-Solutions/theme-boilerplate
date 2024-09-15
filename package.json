@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "format": "wp-scripts format ./themes/theme/src",
     "build": "wp-scripts build --webpack-src-dir=themes/theme/src/assets --output-path=themes/theme/assets/dist --config themes/theme/src/config/webpack.config.js",
-    "dev": "wp-scripts start --webpack-src-dir=themes/theme/src/assets --output-path=themes/theme/assets/dist --config themes/theme/src/config/webpack.config.js"
+    "dev": "wp-scripts start --webpack-src-dir=themes/theme/src --output-path=themes/theme/assets/dist --config themes/theme/src/config/webpack.config.js"
   },
   "repository": {
     "type": "git",
