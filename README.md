@@ -1,6 +1,6 @@
 # Installation
 - Install WordPress
-- `cs /path/to/wordpress/public/directory` where you find the `wp-content` directory and `wp-config.php` file.
+- `cd /path/to/wordpress/public/directory` where you find the `wp-content` directory and `wp-config.php` file.
 - `git clone git@github.com:Mody-Solutions/website.git web`
 - `cd web`
 - `composer install`
